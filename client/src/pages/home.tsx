@@ -65,13 +65,16 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="max-w-2xl"
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">Junkworks</span>
-                <br />
-                Smart Business Scheduler
+              <h1 className="text-2xl md:text-4xl font-bold mb-6 flex flex-col items-center">
+                <img 
+                  src="/assets/logo.png" 
+                  alt="Junkworks" 
+                  className="h-24 md:h-32 mb-2"
+                />
+                <span className="text-lg md:text-3xl">24/7 AI Secretary</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Never miss a job again. Join the waitlist for our AI-powered scheduling assistant that helps small businesses manage appointments and send automated WhatsApp reminders to customers.
+                Never miss a job again. Join the waitlist for our AI-powered Secretary that helps small businesses schedule and manage appointments.
               </p>
 
               <Form {...form}>
@@ -92,8 +95,8 @@ export default function Home() {
                       </FormItem>
                     )}
                   />
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     disabled={waitlistMutation.isPending}
                     className="whitespace-nowrap"
                   >
@@ -141,9 +144,14 @@ export default function Home() {
                   <div className="p-3 space-y-2">
                     {/* Message Bubble */}
                     <div className="bg-[#DCF8C6] rounded-lg p-3 max-w-[80%] ml-auto shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <CalendarIcon className="h-4 w-4 text-[#075E54]" />
-                        <p className="text-sm">Reminder: Window cleaning appointment at 123 Main St tomorrow at 10 AM! 🧹</p>
+                      <div className="flex items-start gap-2">
+                        <span>💼</span>
+                        <div>
+                          <p className="text-sm font-medium">New call received</p>
+                          <p className="text-sm">Job type: Gutter cleaning</p>
+                          <p className="text-sm">Location: 1 Washington Road, NJ</p>
+                          <p className="text-sm">Time: 06/01/2025 4pm</p>
+                        </div>
                       </div>
                       <span className="text-[10px] text-gray-500 block text-right mt-1">11:30 AM</span>
                     </div>
@@ -151,6 +159,22 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Demo Section */}
+      <section className="py-24 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">See Junkworks in Action</h2>
+          <div className="aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl">
+            <iframe
+              src="https://www.youtube.com/embed/lWC5XVKfRO4"
+              title="Junkworks Demo Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
           </div>
         </div>
       </section>
@@ -164,8 +188,11 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-background p-6 rounded-lg shadow-sm"
+              className="bg-background p-6 rounded-lg shadow-sm relative"
             >
+              <div className="absolute top-4 right-4 bg-primary/10 text-primary px-2 py-1 rounded text-sm">
+                Coming Soon
+              </div>
               <RocketIcon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2">Smart Scheduling</h3>
               <p className="text-muted-foreground">
@@ -183,7 +210,7 @@ export default function Home() {
               <SparklesIcon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2">AI-Powered</h3>
               <p className="text-muted-foreground">
-                Smart scheduling suggestions based on your business patterns and customer preferences.
+                AI Intelligence to support customer queries and scheduling needs
               </p>
             </motion.div>
 
@@ -195,9 +222,9 @@ export default function Home() {
               className="bg-background p-6 rounded-lg shadow-sm"
             >
               <Users2Icon className="h-12 w-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Customer-First</h3>
+              <h3 className="text-xl font-semibold mb-2">Multilingual Support</h3>
               <p className="text-muted-foreground">
-                Keep your customers informed with automated WhatsApp reminders and updates.
+                Communicate with customers in multiple languages with accurate real-time translations
               </p>
             </motion.div>
           </div>
@@ -219,6 +246,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contact Us</h4>
               <p className="text-sm text-muted-foreground">Email: andrew@junk-work.com</p>
+              <p className="text-sm text-muted-foreground">Phone: (508) 615-4978</p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">

@@ -3,12 +3,13 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertWaitlistSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { sendWaitlistNotification } from "./utils/email";
 
 export function registerRoutes(app: Express): Server {
   app.post("/api/waitlist", async (req, res) => {
     try {
       const data = insertWaitlistSchema.parse(req.body);
-      
+
       const isRegistered = await storage.isEmailRegistered(data.email);
       if (isRegistered) {
         return res.status(400).json({ 
@@ -17,6 +18,15 @@ export function registerRoutes(app: Express): Server {
       }
 
       const entry = await storage.addToWaitlist(data);
+
+      // Send notification email
+      try {
+        await sendWaitlistNotification(data.email);
+      } catch (emailError) {
+        console.error('Failed to send notification email:', emailError);
+        // Continue even if email fails
+      }
+
       res.status(201).json(entry);
     } catch (error) {
       if (error instanceof Error) {
